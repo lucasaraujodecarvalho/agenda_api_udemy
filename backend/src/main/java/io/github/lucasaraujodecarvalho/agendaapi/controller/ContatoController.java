@@ -1,6 +1,5 @@
 package io.github.lucasaraujodecarvalho.agendaapi.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.github.lucasaraujodecarvalho.agendaapi.entity.Contato;
 import io.github.lucasaraujodecarvalho.agendaapi.repository.ContatoRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
