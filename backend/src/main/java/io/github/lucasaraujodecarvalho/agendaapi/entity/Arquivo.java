@@ -7,25 +7,17 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Getter@Setter
+@Getter
+@Setter
 @NoArgsConstructor
-public class Contato {
+public class Arquivo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 150, nullable = false)
-    private String nome;
-
-    @Column(length = 150, nullable = false)
-    private String email;
-
     @Column
-    private Boolean favorito;
-
-    @OneToOne
-    @JoinColumn(name = "id_arquivo")
-    private Arquivo arquivo;
+    @Lob
+    private byte[] arquivo;
 
 }

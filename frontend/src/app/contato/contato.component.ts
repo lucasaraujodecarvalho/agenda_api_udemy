@@ -46,6 +46,7 @@ export class ContatoComponent implements OnInit {
       this.contatos = response.content;
       this.totalElementos = response.totalElements;
       this.pagina = response.number;
+      console.log(this.contatos)
     })
   }
 

@@ -1,6 +1,8 @@
 package io.github.lucasaraujodecarvalho.agendaapi.controller;
 
+import io.github.lucasaraujodecarvalho.agendaapi.entity.Arquivo;
 import io.github.lucasaraujodecarvalho.agendaapi.entity.Contato;
+import io.github.lucasaraujodecarvalho.agendaapi.repository.ArquivoRepository;
 import io.github.lucasaraujodecarvalho.agendaapi.repository.ContatoRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -22,6 +24,8 @@ import java.util.Optional;
 public class ContatoController {
 
     private final ContatoRepository repository;
+
+    private final ArquivoRepository arquivoRepository;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -61,7 +65,10 @@ public class ContatoController {
                 InputStream is = arquivo.getInputStream();
                 byte[] bytes = new byte[(int) arquivo.getSize()];
                 IOUtils.readFully(is, bytes);
-                c.setFoto(bytes);
+                Arquivo ar = new Arquivo();
+                addArquivo(ar);
+                ar.setArquivo(bytes);
+                c.setArquivo(ar);
                 repository.save(c);
                 is.close();
                 return bytes;
@@ -70,4 +77,9 @@ public class ContatoController {
             }
         }).orElse(null);
     }
+
+    private Arquivo addArquivo(Arquivo arquivo){
+        return arquivoRepository.save(arquivo);
+    }
+
 }
